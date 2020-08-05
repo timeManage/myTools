@@ -1,0 +1,80 @@
+<h1 id="tree">tree</h1>
+<p>树状图列出目录的内容</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>tree命令</strong> 以树状图列出目录的内容。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">tree<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">------- 列表选项 -------
+-a            <span class="token comment"># 显示所有文件和目录。</span>
+-d            <span class="token comment"># 先是目录名称而非文件。</span>
+-l            <span class="token comment"># 如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录。</span>
+-f            <span class="token comment"># 在每个文件或目录之前，显示完整的相对路径名称。</span>
+-x            <span class="token comment"># 将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该目录予以排除在寻找范围外。</span>
+-L level      <span class="token comment"># 限制目录显示层级。</span>
+-R            <span class="token comment"># Rerun tree when max dir level reached.</span>
+-P pattern    <span class="token comment"># &lt;范本样式> 只显示符合范本样式的文件和目录名称。</span>
+-I pattern    <span class="token comment"># Do not list files that match the given pattern.</span>
+--ignore-case <span class="token comment"># Ignore case when pattern matching.</span>
+--matchdirs   <span class="token comment"># Include directory names in -P pattern matching.</span>
+--noreport    <span class="token comment"># Turn off file/directory count at end of tree listing.</span>
+--charset X   <span class="token comment"># Use charset X for terminal/HTML and indentation line output.</span>
+--filelimit <span class="token comment"># # Do not descend dirs with more than # files in them.</span>
+--timefmt <span class="token operator">&lt;</span>f<span class="token operator">></span> <span class="token comment"># Print and format time according to the format &lt;f>.</span>
+-o filename   <span class="token comment"># Output to file instead of stdout.</span>
+-------- 文件选项 ---------
+-q            <span class="token comment"># 用“？”号取代控制字符，列出文件和目录名称。</span>
+-N            <span class="token comment"># 直接列出文件和目录名称，包括控制字符。</span>
+-Q            <span class="token comment"># Quote filenames with double quotes.</span>
+-p            <span class="token comment"># 列出权限标示。</span>
+-u            <span class="token comment"># 列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码。</span>
+-g            <span class="token comment"># 列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码。</span>
+-s            <span class="token comment"># 列出文件和目录大小。</span>
+-h            <span class="token comment"># Print the size in a more human readable way.</span>
+--si          <span class="token comment"># Like -h, but use in SI units (powers of 1000).</span>
+-D            <span class="token comment"># 列出文件或目录的更改时间。</span>
+-F            <span class="token comment"># 在执行文件，目录，Socket，符号连接，管道名称名称，各自加上"*"，"/"，"@"，"|"号。</span>
+--inodes      <span class="token comment"># Print inode number of each file.</span>
+--device      <span class="token comment"># Print device ID number to which each file belongs.</span>
+------- 排序选项 -------
+-v            <span class="token comment"># Sort files alphanumerically by version.</span>
+-t            <span class="token comment"># 用文件和目录的更改时间排序。</span>
+-c            <span class="token comment"># Sort files by last status change time.</span>
+-U            <span class="token comment"># Leave files unsorted.</span>
+-r            <span class="token comment"># Reverse the order of the sort.</span>
+--dirsfirst   <span class="token comment"># List directories before files (-U disables).</span>
+--sort X      <span class="token comment"># Select sort: name,version,size,mtime,ctime.</span>
+------- 图形选项 ------
+-i            <span class="token comment"># 不以阶梯状列出文件和目录名称。</span>
+-A            <span class="token comment"># 使用ASNI绘图字符显示树状图而非以ASCII字符组合。</span>
+-S            <span class="token comment"># Print with CP437 (console) graphics indentation lines.</span>
+-n            <span class="token comment"># Turn colorization off always (-C overrides).</span>
+-C            <span class="token comment"># 在文件和目录清单加上色彩，便于区分各种类型。</span>
+------- XML / HTML / JSON选项 -------
+-X            <span class="token comment"># Prints out an XML representation of the tree.</span>
+-J            <span class="token comment"># Prints out an JSON representation of the tree.</span>
+-H baseHREF   <span class="token comment"># Prints out HTML format with baseHREF as top directory.</span>
+-T string     <span class="token comment"># Replace the default HTML title and H1 header with string.</span>
+--nolinks     <span class="token comment"># Turn off hyperlinks in HTML output.</span>
+---- 杂项选项 ----
+--version     <span class="token comment"># 输入版本信息。</span>
+--help        <span class="token comment"># 打印使用帮助信息。</span>
+--            <span class="token comment"># Options processing terminator.</span></code></pre>
+<h3 id="参数">参数</h3>
+<p>目录：执行tree指令，它会列出指定目录下的所有文件，包括子目录里的文件。</p>
+<h3 id="实例">实例</h3>
+<p>列出目录<code>/private/</code> 第一级文件名</p>
+<pre class="language-"><code class="language-shell">tree  /private/ -L <span class="token number">1</span>
+/private/
+├── etc
+├── tftpboot
+├── tmp
+└── var</code></pre>
+<p>忽略文件夹</p>
+<pre class="language-"><code class="language-shell">tree -I node_modules <span class="token comment"># 忽略当前目录文件夹node_modules</span>
+tree -P node_modules <span class="token comment"># 列出当前目录文件夹node_modules的目录结构</span>
+tree -P node_modules -L <span class="token number">2</span> <span class="token comment"># 显示目录node_modules两层的目录树结构</span>
+tree -L <span class="token number">2</span> <span class="token operator">></span> /home/www/tree.txt <span class="token comment"># 当前目录结果存到 tree.txt 文件中</span></code></pre>
+<p>忽略多个文件夹</p>
+<pre class="language-"><code class="language-shell">tree -I <span class="token string">'node_modules|icon|font'</span> -L <span class="token number">2</span></code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

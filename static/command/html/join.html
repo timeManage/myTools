@@ -1,0 +1,21 @@
+<h1 id="join">join</h1>
+<p>两个文件中指定栏位内容相同的行连接起来</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>join命令</strong> 用来将两个文件中，制定栏位内容相同的行连接起来。找出两个文件中，指定栏位内容相同的行，并加以合并，再输出到标准输出设备。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">join<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-a<span class="token operator">&lt;</span><span class="token number">1</span>或<span class="token operator"><span class="token file-descriptor important">2</span>></span>：除了显示原来的输出内容之外，还显示指令文件中没有相同栏位的行；
+-e<span class="token operator">&lt;</span>字符串<span class="token operator">></span>：若<span class="token punctuation">[</span>文件1<span class="token punctuation">]</span>与<span class="token punctuation">[</span>文件2<span class="token punctuation">]</span>中找不到指定的栏位，则在输出中填入选项中的字符串；
+-i或--ignore-case：比较栏位内容时，忽略大小写的差异；
+-o<span class="token operator">&lt;</span>格式<span class="token operator">></span>：按照指定的格式来显示结果；
+-t<span class="token operator">&lt;</span>字符<span class="token operator">></span>：使用栏位的分割字符；
+-v<span class="token operator">&lt;</span><span class="token number">1</span>或<span class="token operator"><span class="token file-descriptor important">2</span>></span>：更-a相同，但是只显示文件中没有相同栏位的行；
+-<span class="token operator"><span class="token file-descriptor important">1</span>&lt;</span>栏位<span class="token operator">></span>：连接<span class="token punctuation">[</span>文件1<span class="token punctuation">]</span>指定的栏位；
+-<span class="token operator"><span class="token file-descriptor important">2</span>&lt;</span>栏位<span class="token operator">></span>：连接<span class="token punctuation">[</span>文件2<span class="token punctuation">]</span>指定的栏位。</code></pre>
+<h3 id="参数">参数</h3>
+<ul>
+<li>文件1：要进行合并操作的第1个文件参数；</li>
+<li>文件2：要进行合并操作的第2个文件参数。</li>
+</ul>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->
