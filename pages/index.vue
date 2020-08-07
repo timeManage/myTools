@@ -12,21 +12,21 @@
 </template>
 <script>
     export default {
-        head(){
-          return{
-              link:[
-                  {rel:"stylesheet",href:"//lib.baomitu.com/prism/latest/themes/prism-tomorrow.min.css"},
-                  {rel:"stylesheet",href:"/css/index.css"},
+        head() {
+            return {
+                link: [
+                    {rel: "stylesheet", href: "//lib.baomitu.com/prism/latest/themes/prism-tomorrow.min.css"},
+                    {rel: "stylesheet", href: "/css/index.css"},
 
-              ]
-          }
+                ]
+            }
         },
         data() {
             return {
                 comm: [],
                 value: "",
                 list: [],
-                content:"",
+                content: "",
             }
         },
         mounted() {
@@ -90,8 +90,8 @@
             click(name) {
                 /*import x from "linux-command/command/alias.md";
                 let alias=require("linux-command/command/alias.md");*/
-                this.$axios.get("command/html/"+name+".html").then(res=>{
-                    this.content=res.data;
+                this.$axios.get("command/html/" + name + ".html").then(res => {
+                    this.content = res.data;
                 })
             }
         },

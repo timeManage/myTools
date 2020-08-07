@@ -40,6 +40,7 @@ marked.setOptions({
     },
 
 });
+
 export default ((content) => {
     return marked(content, {renderer});
 });

@@ -4,4 +4,4 @@ import locale from 'view-design/dist/locale/zh-CN' // Change locale, check node_
 
 Vue.use(iView, {
     locale
-})
+});
