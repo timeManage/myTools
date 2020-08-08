@@ -1,0 +1,65 @@
+<h1 id="systemctl">systemctl</h1>
+<p>系统服务管理器指令</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>systemctl命令</strong> 是系统服务管理器指令，它实际上将 service 和 chkconfig 这两个命令组合到一起。</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>旧指令</th>
+<th>新指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使某服务自动启动</td>
+<td>chkconfig --level 3 httpd on</td>
+<td>systemctl enable httpd.service</td>
+</tr>
+<tr>
+<td>使某服务不自动启动</td>
+<td>chkconfig --level 3 httpd off</td>
+<td>systemctl disable httpd.service</td>
+</tr>
+<tr>
+<td>检查服务状态</td>
+<td>service httpd status</td>
+<td>systemctl status httpd.service （服务详细信息） systemctl is-active httpd.service （仅显示是否 Active)</td>
+</tr>
+<tr>
+<td>显示所有已启动的服务</td>
+<td>chkconfig --list</td>
+<td>systemctl list-units --type=service</td>
+</tr>
+<tr>
+<td>启动某服务</td>
+<td>service httpd start</td>
+<td>systemctl start httpd.service</td>
+</tr>
+<tr>
+<td>停止某服务</td>
+<td>service httpd stop</td>
+<td>systemctl stop httpd.service</td>
+</tr>
+<tr>
+<td>重启某服务</td>
+<td>service httpd restart</td>
+<td>systemctl restart httpd.service</td>
+</tr>
+</tbody></table>
+<h3 id="实例">实例</h3>
+<pre class="language-"><code class="language-shell">systemctl start nfs-server.service <span class="token builtin class-name">.</span> <span class="token comment"># 启动nfs服务</span>
+systemctl <span class="token builtin class-name">enable</span> nfs-server.service <span class="token comment"># 设置开机自启动</span>
+systemctl disable nfs-server.service <span class="token comment"># 停止开机自启动</span>
+systemctl status nfs-server.service <span class="token comment"># 查看服务当前状态</span>
+systemctl restart nfs-server.service <span class="token comment"># 重新启动某服务</span>
+systemctl list-units --type<span class="token operator">=</span>service <span class="token comment"># 查看所有已启动的服务</span></code></pre>
+<p>开启防火墙22端口</p>
+<pre class="language-"><code class="language-shell">iptables -I INPUT -p tcp --dport <span class="token number">22</span> -j accept</code></pre>
+<p>如果仍然有问题，就可能是SELinux导致的</p>
+<p>关闭SElinux：</p>
+<p>修改<code>/etc/selinux/config</code>文件中的<code>SELINUX=&quot;&quot;</code>为disabled，然后重启。</p>
+<p>彻底关闭防火墙：</p>
+<pre class="language-"><code class="language-shell"><span class="token function">sudo</span> systemctl status firewalld.service
+<span class="token function">sudo</span> systemctl stop firewalld.service          
+<span class="token function">sudo</span> systemctl disable firewalld.service</code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

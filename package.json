@@ -1,0 +1,32 @@
+{
+  "name": "mytools",
+  "version": "1.0.0",
+  "description": "My wondrous Nuxt.js project",
+  "author": "darker",
+  "private": true,
+  "config": {
+    "nuxt": {
+      "host": "localhost",
+      "port": "80"
+    }
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "deploy": "push-dir --dir=dist --branch=master --cleanup"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.0",
+    "fs-extra": "^9.0.1",
+    "linux-command": "^1.5.1",
+    "marked": "^1.1.1",
+    "nuxt": "^2.13.3",
+    "prismjs": "^1.20.0",
+    "view-design": "^4.3.2"
+  },
+  "devDependencies": {
+    "push-dir": "^0.4.1"
+  }
+}

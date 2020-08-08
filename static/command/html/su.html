@@ -1,0 +1,24 @@
+<h1 id="su">su</h1>
+<p>用于切换当前用户身份到其他用户身份</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>su命令</strong> 用于切换当前用户身份到其他用户身份，变更时须输入所要变更的用户帐号与密码。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">su<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-c<span class="token operator">&lt;</span>指令<span class="token operator">></span>或--command<span class="token operator">=</span><span class="token operator">&lt;</span>指令<span class="token operator">></span>：执行完指定的指令后，即恢复原来的身份；
+-f或——fast：适用于csh与tsch，使shell不用去读取启动文件；
+-l或——login：改变身份时，也同时变更工作目录，以及<span class="token environment constant">HOME</span>,<span class="token environment constant">SHELL</span>,<span class="token environment constant">USER</span>,logname。此外，也会变更<span class="token environment constant">PATH</span>变量；
+-m,-p或--preserve-environment：变更身份时，不要变更环境变量；
+-s<span class="token operator">&lt;</span>shell<span class="token operator">></span>或--shell<span class="token operator">=</span><span class="token operator">&lt;</span>shell<span class="token operator">></span>：指定要执行的shell；
+--help：显示帮助；
+--version；显示版本信息。</code></pre>
+<h3 id="参数">参数</h3>
+<p>用户：指定要切换身份的目标用户。</p>
+<h3 id="实例">实例</h3>
+<p>变更帐号为root并在执行ls指令后退出变回原使用者：</p>
+<pre class="language-"><code class="language-shell"><span class="token function">su</span> -c <span class="token function">ls</span> root</code></pre>
+<p>变更帐号为root并传入<code>-f</code>选项给新执行的shell：</p>
+<pre class="language-"><code class="language-shell"><span class="token function">su</span> root -f</code></pre>
+<p>变更帐号为test并改变工作目录至test的家目录：</p>
+<pre class="language-"><code class="language-shell"><span class="token function">su</span> -test</code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

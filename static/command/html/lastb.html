@@ -1,0 +1,37 @@
+<h1 id="lastb">lastb</h1>
+<p>列出登入系统失败的用户相关信息</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>lastb命令</strong> 用于显示用户错误的登录列表，此指令可以发现系统的登录异常。单独执行lastb命令，它会读取位于<code>/var/log</code>目录下，名称为btmp的文件，并把该文件内容记录的登入失败的用户名单，全部显示出来。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">lastb<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-a：把从何处登入系统的主机名称或ip地址显示在最后一行；
+-d：将IP地址转换成主机名称；
+-f<span class="token operator">&lt;</span>记录文件<span class="token operator">></span>：指定记录文件；
+-n<span class="token operator">&lt;</span>显示列数<span class="token operator">></span>或-<span class="token operator">&lt;</span>显示列数<span class="token operator">></span>：设置列出名单的显示列数；
+-R：不显示登入系统的主机名称或IP地址；
+-x：显示系统关机，重新开机，以及执行等级的改变等信息。</code></pre>
+<h3 id="参数">参数</h3>
+<ul>
+<li>用户名：显示中的用户的登录列表；</li>
+<li>终端：显示从指定终端的登录列表。</li>
+</ul>
+<h3 id="实例">实例</h3>
+<p>首次运行lastb命令会报下的错误：</p>
+<pre class="language-"><code class="language-shell">lastb: /var/log/btmp: No such <span class="token function">file</span> or directory
+Perhaps this <span class="token function">file</span> was removed by the operator to prevent logging lastb info.</code></pre>
+<p>只需建立这个不存在的文件即可。</p>
+<pre class="language-"><code class="language-shell"><span class="token function">touch</span> /var/log/btmp</code></pre>
+<p>使用ssh的登录失败不会记录在btmp文件中。</p>
+<pre class="language-"><code class="language-shell">lastb <span class="token operator">|</span> <span class="token function">head</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Tue Dec <span class="token number">17</span> 06:19 - 06:19  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Tue Dec <span class="token number">17</span> 04:05 - 04:05  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Tue Dec <span class="token number">17</span> 01:52 - 01:52  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Mon Dec <span class="token number">16</span> <span class="token number">23</span>:38 - <span class="token number">23</span>:38  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+leonob   ssh:notty    <span class="token number">222.211</span>.85.18    Mon Dec <span class="token number">16</span> <span class="token number">22</span>:18 - <span class="token number">22</span>:18  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+leonob   ssh:notty    <span class="token number">222.211</span>.85.18    Mon Dec <span class="token number">16</span> <span class="token number">22</span>:18 - <span class="token number">22</span>:18  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Mon Dec <span class="token number">16</span> <span class="token number">21</span>:25 - <span class="token number">21</span>:25  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Mon Dec <span class="token number">16</span> <span class="token number">19</span>:12 - <span class="token number">19</span>:12  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+root     ssh:notty    <span class="token number">110.84</span>.129.3     Mon Dec <span class="token number">16</span> <span class="token number">17</span>:00 - <span class="token number">17</span>:00  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span>
+admin    ssh:notty    <span class="token number">129.171</span>.193.99   Mon Dec <span class="token number">16</span> <span class="token number">16</span>:52 - <span class="token number">16</span>:52  <span class="token punctuation">(</span>00:00<span class="token punctuation">)</span></code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->
