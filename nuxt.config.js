@@ -1,7 +1,8 @@
-import fs from './components/fs'
+//import fs from './components/fs'
 
 
 module.exports = {
+    telemetry: false,
     /*
     ** Headers of the page
     */
@@ -23,6 +24,9 @@ module.exports = {
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
     ],
+    router: {
+        base: '/timeManage.github.io/'
+    },
     /*
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
