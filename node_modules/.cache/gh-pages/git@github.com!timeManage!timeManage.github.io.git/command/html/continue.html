@@ -1,0 +1,50 @@
+<h1 id="continue">continue</h1>
+<p>结束本次循环，继续执行下一个for，while或until循环。</p>
+<h2 id="概要">概要</h2>
+<pre class="language-"><code class="language-shell"><span class="token builtin class-name">continue</span> <span class="token punctuation">[</span>n<span class="token punctuation">]</span></code></pre>
+<h2 id="主要用途">主要用途</h2>
+<ul>
+<li>结束本次循环，继续执行下一个for，while或until循环；可指定从第几层循环继续执行。</li>
+</ul>
+<h2 id="参数">参数</h2>
+<p>n（可选）：大于等于1的整数，用于指定从第几层循环继续执行。</p>
+<h2 id="返回值">返回值</h2>
+<p>返回状态为成功除非n小于1。</p>
+<h2 id="例子">例子</h2>
+<pre class="language-"><code class="language-shell"><span class="token comment"># continue的可选参数n缺省值为1。</span>
+<span class="token keyword">for</span><span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>i<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token comment"># 跳到内层for循环继续执行。</span>
+  <span class="token keyword">for</span><span class="token variable"><span class="token punctuation">((</span>j<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>j<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token keyword">if</span><span class="token variable"><span class="token punctuation">((</span>j<span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+      <span class="token comment"># 换成continue 1时结果一样</span>
+      <span class="token builtin class-name">continue</span>
+    <span class="token keyword">fi</span>
+  <span class="token builtin class-name">printf</span> <span class="token string">"%s %s<span class="token entity" title="\n">\n</span>"</span> <span class="token variable">&#36;{i}</span> <span class="token variable">&#36;{j}</span>
+  <span class="token keyword">done</span>
+<span class="token keyword">done</span>
+<span class="token comment"># 输出结果</span>
+<span class="token number">3</span> <span class="token number">3</span>
+<span class="token number">3</span> <span class="token number">1</span>
+<span class="token number">2</span> <span class="token number">3</span>
+<span class="token number">2</span> <span class="token number">1</span>
+<span class="token number">1</span> <span class="token number">3</span>
+<span class="token number">1</span> <span class="token number">1</span></code></pre>
+<pre class="language-"><code class="language-shell"><span class="token comment"># 当n为2时：</span>
+<span class="token comment"># 跳到外层for循环继续执行。</span>
+<span class="token keyword">for</span><span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>i<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token keyword">for</span><span class="token variable"><span class="token punctuation">((</span>j<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>j<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token keyword">if</span><span class="token variable"><span class="token punctuation">((</span>j<span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+      <span class="token builtin class-name">continue</span> <span class="token number">2</span>
+    <span class="token keyword">fi</span>
+  <span class="token builtin class-name">printf</span> <span class="token string">"%s %s<span class="token entity" title="\n">\n</span>"</span> <span class="token variable">&#36;{i}</span> <span class="token variable">&#36;{j}</span>
+  <span class="token keyword">done</span>
+<span class="token keyword">done</span>
+<span class="token comment"># 输出结果</span>
+<span class="token number">3</span> <span class="token number">3</span>
+<span class="token number">2</span> <span class="token number">3</span>
+<span class="token number">1</span> <span class="token number">3</span></code></pre>
+<h3 id="注意">注意</h3>
+<ol>
+<li>该命令是bash内建命令，相关的帮助信息请查看<code>help</code>命令。</li>
+</ol>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

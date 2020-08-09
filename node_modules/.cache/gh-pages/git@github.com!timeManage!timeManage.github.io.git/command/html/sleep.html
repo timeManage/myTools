@@ -1,0 +1,22 @@
+<h1 id="sleep">sleep</h1>
+<p>将目前动作延迟一段时间</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>sleep命令</strong> 暂停指定的时间。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">sleep<span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="参数">参数</h3>
+<p>时间：指定要暂停时间的长度。</p>
+<p>时间长度，后面可接 s、m、h 或 d，其中 s 为秒，m 为 分钟，h 为小时，d 为日数。</p>
+<h3 id="实例">实例</h3>
+<p>有时在写一些以循环方式运行的监控脚本，设置时间间隔是必不可少的，下面是一个Shell进度条的脚本演示在脚本中生成延时。</p>
+<pre class="language-"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">b</span><span class="token operator">=</span><span class="token string">''</span>
+<span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>&#36;i<span class="token operator">&lt;=</span><span class="token number">100</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">))</span></span>
+ <span class="token keyword">do</span>
+ <span class="token builtin class-name">printf</span> <span class="token string">"Progress:[%-100s]%d%%<span class="token entity" title="\r">\r</span>"</span> <span class="token variable">&#36;b</span> <span class="token variable">&#36;i</span>
+ <span class="token function">sleep</span> <span class="token number">0.1</span>
+ <span class="token assign-left variable">b</span><span class="token operator">=</span><span class="token comment">#&#36;b</span>
+ <span class="token keyword">done</span>
+<span class="token builtin class-name">echo</span></code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->
