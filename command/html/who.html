@@ -1,0 +1,35 @@
+<h1 id="who">who</h1>
+<p>显示目前登录系统的用户信息</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>who命令</strong> 是显示目前登录系统的用户信息。执行who命令可得知目前有那些用户登入系统，单独执行who命令会列出登入帐号，使用的终端机，登入时间以及从何处登入或正在使用哪个X显示器。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">who<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-H或--heading：显示各栏位的标题信息列；
+-i或-u或--idle：显示闲置时间，若该用户在前一分钟之内有进行任何动作，将标示成<span class="token string">"."</span>号，如果该用户已超过24小时没有任何动作，则标示出<span class="token string">"old"</span>字符串；
+-m：此参数的效果和指定<span class="token string">"am i"</span>字符串相同；
+-q或--count：只显示登入系统的帐号名称和总人数；
+-s：此参数将忽略不予处理，仅负责解决who指令其他版本的兼容性问题；
+-w或-T或--mesg或--message或--writable：显示用户的信息状态栏；
+--help：在线帮助；
+--version：显示版本信息。</code></pre>
+<h3 id="参数">参数</h3>
+<p>文件：指定查询文件。</p>
+<h3 id="实例">实例</h3>
+<pre class="language-"><code class="language-shell"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># who</span>
+root     pts/0        <span class="token number">2013</span>-08-19 <span class="token number">15</span>:04 <span class="token punctuation">(</span><span class="token number">192.168</span>.0.134<span class="token punctuation">)</span>
+root     pts/1        <span class="token number">2013</span>-12-20 <span class="token number">10</span>:37 <span class="token punctuation">(</span><span class="token number">180.111</span>.155.40<span class="token punctuation">)</span>
+
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># who -q</span>
+root root
+<span class="token comment"># users=2</span>
+
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># who -H</span>
+NAME     LINE         <span class="token function">time</span>             COMMENT
+root     pts/0        <span class="token number">2013</span>-08-19 <span class="token number">15</span>:04 <span class="token punctuation">(</span><span class="token number">192.168</span>.0.134<span class="token punctuation">)</span>
+root     pts/1        <span class="token number">2013</span>-12-20 <span class="token number">10</span>:37 <span class="token punctuation">(</span><span class="token number">180.111</span>.155.40<span class="token punctuation">)</span>
+
+<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># who -w</span>
+root     + pts/0        <span class="token number">2013</span>-08-19 <span class="token number">15</span>:04 <span class="token punctuation">(</span><span class="token number">192.168</span>.0.134<span class="token punctuation">)</span>
+root     + pts/1        <span class="token number">2013</span>-12-20 <span class="token number">10</span>:37 <span class="token punctuation">(</span><span class="token number">180.111</span>.155.40<span class="token punctuation">)</span></code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->
