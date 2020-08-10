@@ -1,0 +1,25 @@
+<h1 id="hostname">hostname</h1>
+<p>显示和设置系统的主机名</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>hostname命令</strong> 用于显示和设置系统的主机名称。环境变量HOSTNAME也保存了当前的主机名。在使用hostname命令设置主机名后，系统并不会永久保存新的主机名，重新启动机器之后还是原来的主机名。如果需要永久修改主机名，需要同时修改<code>/etc/hosts</code>和<code>/etc/sysconfig/network</code>的相关内容。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">hostname<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-v：详细信息模式；
+-a：显示主机别名；
+-d：显示DNS域名；
+-f：显示FQDN名称；
+-i：显示主机的ip地址；
+-s：显示短主机名称，在第一个点处截断；
+-y：显示NIS域名。</code></pre>
+<h3 id="参数">参数</h3>
+<p>主机名：指定要设置的主机名。</p>
+<h3 id="实例">实例</h3>
+<pre class="language-"><code class="language-shell"><span class="token punctuation">[</span>root@AY1307311912260196fcZ ~<span class="token punctuation">]</span><span class="token comment"># hostname</span>
+AY1307311912260196fcZ
+
+<span class="token comment"># change hostname</span>
+<span class="token function">hostname</span> newname <span class="token comment"># for now</span>
+<span class="token function">vi</span> /etc/hosts <span class="token comment"># forever</span>
+<span class="token function">reboot</span></code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

@@ -1,0 +1,46 @@
+<h1 id="cal">cal</h1>
+<p>显示当前日历或指定日期的日历</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>cal命令</strong> 用于显示当前日历，或者指定日期的日历，如果没有指定参数，则显示当前月份。</p>
+<p>一个单一的参数指定要显示的年份  (1  -  9999)  ;  注意年份必须被完全地指定:  cal 89 不会 显示1989年的日历.  两个参数表示月份 (1 - 12) 和年份.  如果没有指定参数,<br>则显示当前月份的日历.</p>
+<p>一年从Jan 1 (1 月 1 日) 开始.</p>
+<p>格里高利历法改革(Gregorian Reformation)被认为发生于 1752 年 9 月 3 日.  在此之前, 多数国家已经认可这项改革(尽管有一些直到 20  世纪初才认可它).   那天之后的  10<br>天在这项改革被略去了, 所以那个月的日历有点不太寻常.</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell"><span class="token function">cal</span> <span class="token punctuation">[</span> -mjy <span class="token punctuation">]</span> <span class="token punctuation">[</span> 月份 <span class="token punctuation">]</span> <span class="token punctuation">[</span> 年份 <span class="token punctuation">]</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-l <span class="token comment"># 显示单月输出；</span>
+-3 <span class="token comment"># 显示临近三个月的日历；</span>
+-s <span class="token comment"># 将星期日作为月的第一天；</span>
+-m <span class="token comment"># 显示星期一作为一周的第一天..  (缺省为星期日.)</span>
+-j <span class="token comment"># 显示儒略历的(Julian)日期 (以 1 为基的天数, 从 1 月 1 日开始计数) .</span>
+-y <span class="token comment"># 显示当前年份的日历..</span></code></pre>
+<h3 id="参数">参数</h3>
+<pre class="language-"><code class="language-shell">月：指定月份；
+年：指定年份。</code></pre>
+<h3 id="实例">实例</h3>
+<p>单独执行cal命令会打印出日历：</p>
+<pre class="language-"><code class="language-shell"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># cal</span>
+    十二月 <span class="token number">2013</span>     
+日 一 二 三 四 五 六
+ <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>
+ <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span>
+<span class="token number">15</span> <span class="token number">16</span> <span class="token number">17</span> <span class="token number">18</span> <span class="token number">19</span> <span class="token number">20</span> <span class="token number">21</span>
+<span class="token number">22</span> <span class="token number">23</span> <span class="token number">24</span> <span class="token number">25</span> <span class="token number">26</span> <span class="token number">27</span> <span class="token number">28</span>
+<span class="token number">29</span> <span class="token number">30</span> <span class="token number">31</span></code></pre>
+<pre class="language-"><code class="language-shell"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># cal -j</span>
+        十二月 <span class="token number">2013</span>        
+  日   一   二   三   四   五   六
+<span class="token number">335</span> <span class="token number">336</span> <span class="token number">337</span> <span class="token number">338</span> <span class="token number">339</span> <span class="token number">340</span> <span class="token number">341</span>
+<span class="token number">342</span> <span class="token number">343</span> <span class="token number">344</span> <span class="token number">345</span> <span class="token number">346</span> <span class="token number">347</span> <span class="token number">348</span>
+<span class="token number">349</span> <span class="token number">350</span> <span class="token number">351</span> <span class="token number">352</span> <span class="token number">353</span> <span class="token number">354</span> <span class="token number">355</span>
+<span class="token number">356</span> <span class="token number">357</span> <span class="token number">358</span> <span class="token number">359</span> <span class="token number">360</span> <span class="token number">361</span> <span class="token number">362</span>
+<span class="token number">363</span> <span class="token number">364</span> <span class="token number">365</span></code></pre>
+<pre class="language-"><code class="language-shell"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># cal -3</span>
+    十一月 <span class="token number">2013</span>           十二月 <span class="token number">2013</span>            一月 <span class="token number">2014</span>      
+日 一 二 三 四 五 六  日 一 二 三 四 五 六  日 一 二 三 四 五 六
+                <span class="token number">1</span>  <span class="token number">2</span>   <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>            <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>
+ <span class="token number">3</span>  <span class="token number">4</span>  <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span>   <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span>   <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span>
+<span class="token number">10</span> <span class="token number">11</span> <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span> <span class="token number">15</span> <span class="token number">16</span>  <span class="token number">15</span> <span class="token number">16</span> <span class="token number">17</span> <span class="token number">18</span> <span class="token number">19</span> <span class="token number">20</span> <span class="token number">21</span>  <span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span> <span class="token number">15</span> <span class="token number">16</span> <span class="token number">17</span> <span class="token number">18</span>
+<span class="token number">17</span> <span class="token number">18</span> <span class="token number">19</span> <span class="token number">20</span> <span class="token number">21</span> <span class="token number">22</span> <span class="token number">23</span>  <span class="token number">22</span> <span class="token number">23</span> <span class="token number">24</span> <span class="token number">25</span> <span class="token number">26</span> <span class="token number">27</span> <span class="token number">28</span>  <span class="token number">19</span> <span class="token number">20</span> <span class="token number">21</span> <span class="token number">22</span> <span class="token number">23</span> <span class="token number">24</span> <span class="token number">25</span>
+<span class="token number">24</span> <span class="token number">25</span> <span class="token number">26</span> <span class="token number">27</span> <span class="token number">28</span> <span class="token number">29</span> <span class="token number">30</span>  <span class="token number">29</span> <span class="token number">30</span> <span class="token number">31</span>              <span class="token number">26</span> <span class="token number">27</span> <span class="token number">28</span> <span class="token number">29</span> <span class="token number">30</span> <span class="token number">31</span>  </code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

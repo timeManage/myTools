@@ -1,0 +1,20 @@
+<h1 id="tload">tload</h1>
+<p>显示系统负载状况</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>tload命令</strong> 以图形化的方式输出当前系统的平均负载到指定的终端。假设不给予终端机编号，则会在执行tload指令的终端机显示负载情形。</p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">tload<span class="token punctuation">(</span>选项<span class="token punctuation">)</span><span class="token punctuation">(</span>参数<span class="token punctuation">)</span></code></pre>
+<h3 id="选项">选项</h3>
+<pre class="language-"><code class="language-shell">-s：指定闲时的刻度；
+-d：指定间隔的时间（秒）。</code></pre>
+<h3 id="参数">参数</h3>
+<p>终端：指定显示信息的终端设备文件。</p>
+<h3 id="实例">实例</h3>
+<p>使用tload命令查看系统负载情况：</p>
+<pre class="language-"><code class="language-shell">tload -d <span class="token number">1</span>
+<span class="token number">0.08</span>, <span class="token number">0.02</span>,0.01
+<span class="token number">0.04</span>, <span class="token number">0.01</span>, <span class="token number">0.00</span>
+<span class="token number">0.04</span>, <span class="token number">0.01</span>, <span class="token number">0.00</span>
+<span class="token number">0.04</span>, <span class="token number">0.01</span>,0.00
+<span class="token number">0.06</span>, <span class="token number">0.02</span>, <span class="token number">0.00</span></code></pre>
+<!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

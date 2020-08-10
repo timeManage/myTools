@@ -1,0 +1,46 @@
+<h1 id="pigz">pigz</h1>
+<p>可以用来解压缩文件，gzip的并行实现升级版</p>
+<h2 id="补充说明">补充说明</h2>
+<p><strong>pigz命令</strong>可以用来解压缩文件，最重要的是支持多线程并行处理，解压缩比gzip快。主页: <a href="http://zlib.net/pigz/">http://zlib.net/pigz/</a></p>
+<h3 id="语法">语法</h3>
+<pre class="language-"><code class="language-shell">pigz <span class="token punctuation">[</span> -cdfhikKlLmMnNqrRtz0<span class="token punctuation">..</span><span class="token number">9,11</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> -b blocksize <span class="token punctuation">]</span> <span class="token punctuation">[</span> -p threads <span class="token punctuation">]</span> <span class="token punctuation">[</span> -S suffix <span class="token punctuation">]</span> <span class="token punctuation">[</span> name <span class="token punctuation">..</span>.  <span class="token punctuation">]</span>
+unpigz <span class="token punctuation">[</span> -cfhikKlLmMnNqrRtz <span class="token punctuation">]</span> <span class="token punctuation">[</span> -b blocksize <span class="token punctuation">]</span> <span class="token punctuation">[</span> -p threads <span class="token punctuation">]</span> <span class="token punctuation">[</span> -S suffix <span class="token punctuation">]</span> <span class="token punctuation">[</span> name <span class="token punctuation">..</span>.  <span class="token punctuation">]</span></code></pre>
+<h3 id="参数">参数</h3>
+<pre class="language-"><code class="language-shell">-0 to -9, -11       <span class="token comment"># Compression level (level 11, zopfli, is much slower)</span>
+--fast, --best      <span class="token comment"># Compression levels 1 and 9 respectively</span>
+-b, --blocksize mmm <span class="token comment"># Set compression block size to mmmK (default 128K)</span>
+-c, --stdout        <span class="token comment"># Write all processed output to stdout (won't delete)</span>
+-d, --decompress    <span class="token comment"># Decompress the compressed input</span>
+-f, --force         <span class="token comment"># Force overwrite, compress .gz, links, and to terminal</span>
+-F  --first         <span class="token comment"># Do iterations first, before block split for -11</span>
+-h, --help          <span class="token comment"># Display a help screen and quit</span>
+-i, --independent   <span class="token comment"># Compress blocks independently for damage recovery</span>
+-I, --iterations n  <span class="token comment"># Number of iterations for -11 optimization</span>
+-J, --maxsplits n   <span class="token comment"># Maximum number of split blocks for -11</span>
+-k, --keep          <span class="token comment"># Do not delete original file after processing</span>
+-K, --zip           <span class="token comment"># Compress to PKWare zip (.zip) single entry format</span>
+-l, --list          <span class="token comment"># List the contents of the compressed input</span>
+-L, --license       <span class="token comment"># Display the pigz license and quit</span>
+-m, --no-time       <span class="token comment"># Do not store or restore mod time</span>
+-M, --time          <span class="token comment"># Store or restore mod time</span>
+-n, --no-name       <span class="token comment"># Do not store or restore file name or mod time</span>
+-N, --name          <span class="token comment"># Store or restore file name and mod time</span>
+-O  --oneblock      <span class="token comment"># Do not split into smaller blocks for -11</span>
+-p, --processes n   <span class="token comment"># Allow up to n compression threads (default is the number of online processors, or 8 if unknown)</span>
+-q, --quiet         <span class="token comment"># Print no messages, even on error</span>
+-r, --recursive     <span class="token comment"># Process the contents of all subdirectories</span>
+-R, --rsyncable     <span class="token comment"># Input-determined block locations for rsync</span>
+-S, --suffix .sss   <span class="token comment"># Use suffix .sss instead of .gz (for compression)</span>
+-t, --test          <span class="token comment"># Test the integrity of the compressed input</span>
+-v, --verbose       <span class="token comment"># Provide more verbose output</span>
+-V  --version       <span class="token comment"># Show the version of pigz</span>
+-Y  --synchronous   <span class="token comment"># Force output file write to permanent storage</span>
+-z, --zlib          <span class="token comment"># Compress to zlib (.zz) instead of gzip format</span>
+--                  <span class="token comment"># All arguments after "--" are treated as files</span></code></pre>
+<h3 id="实例">实例</h3>
+<p>可以结合<code>tar</code>使用, 压缩命令</p>
+<pre class="language-"><code class="language-shell"><span class="token function">tar</span> -cvf - dir1 dir2 dir3 <span class="token operator">|</span> pigz -p <span class="token number">8</span> <span class="token operator">></span> output.tgz</code></pre>
+<p>解压命令</p>
+<pre class="language-"><code class="language-shell">pigz -p <span class="token number">8</span> -d output.tgz</code></pre>
+<p>如果是gzip格式，也支持用tar解压</p>
+<pre class="language-"><code class="language-shell"><span class="token function">tar</span> -xzvf output.tgz</code></pre>
