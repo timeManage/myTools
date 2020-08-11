@@ -16,7 +16,7 @@
             return {
                 link: [
                     {rel: "stylesheet", href: "//lib.baomitu.com/prism/latest/themes/prism-tomorrow.min.css"},
-                    {rel: "stylesheet", href: "/css/index.css"},
+                    {rel: "stylesheet", href: "./css/index.css"},
 
                 ]
             }
@@ -90,7 +90,7 @@
             click(name) {
                 /*import x from "linux-command/command/alias.md";
                 let alias=require("linux-command/command/alias.md");*/
-                this.$axios.get("command/html/" + name + ".html").then(res => {
+                this.$axios.get("myTools/command/html/" + name + ".html").then(res => {
                     this.content = res.data;
                 })
             }
