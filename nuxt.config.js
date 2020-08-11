@@ -24,9 +24,6 @@ module.exports = {
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
     ],
-    router: {
-        base: '/myTools/'
-    },
     /*
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
@@ -54,5 +51,8 @@ module.exports = {
         /*
         ** Run ESLint on save
         */
-    }
+    },
+    router: {
+        base: '/myTools'
+    },
 };
