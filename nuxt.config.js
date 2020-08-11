@@ -25,7 +25,7 @@ module.exports = {
         '@nuxtjs/axios',
     ],
     router: {
-        base: '/timeManage.github.io/'
+        base: '/myTools/'
     },
     /*
     ** Axios module configuration
