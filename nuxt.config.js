@@ -53,6 +53,6 @@ module.exports = {
         */
     },
     router: {
-        base: '/myTools'
+        base: './'
     },
 };
