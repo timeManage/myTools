@@ -1,10 +1,12 @@
+html, body, #__nuxt, #__layout, .demo-split, .ivu-tabs.ivu-tabs-mini, .ivu-tabs-content.ivu-tabs-content-animated, .ivu-tabs-tabpane {
+    height: 100%;
+}
+
 #content {
     word-wrap: break-word;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     line-height: 1.6;
     color: #333;
-    overflow: auto;
-    height: 900px;
 }
 
 #content h1 {
@@ -46,6 +48,11 @@ li {
     text-align: -webkit-match-parent;
 }
 
+li i {
+    color: #ed4014;
+    font-style: inherit;
+}
+
 li code {
     color: #ccc;
     padding: .2em .4em;
@@ -58,4 +65,18 @@ li code {
 #content p, #content blockquote, #content ul, #content ol, #content dl, #content table, #content pre {
     margin-top: 0;
     margin-bottom: 16px;
+}
+
+.ivu-tabs-tabpane .clock, .linux {
+    height: 100%;
+
+}
+
+.linux {
+    overflow: auto;
+}
+
+.clock .ivu-card {
+    height: 100%;
+    overflow: auto;
 }
