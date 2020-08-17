@@ -2,14 +2,11 @@
     <div class="demo-split">
         <Tabs size="small">
             <TabPane label="Linux命令查询" icon="logo-tux">
-                <Row style="height:calc(100% - 49px)">
-                    <Col span="6">
-                        <Input @on-change="change" v-model="value" placeholder="Linux命令搜索" size="large" autofocus/>
-                        <li @click="click(item.name)" v-for="(item,index) in list" :key="index" v-html="item.html"
-                            class="ivu-select-item"/>
-                    </Col>
-                    <Col id="content" span="18" v-html="content"/>
-                </Row>
+                <div @mousemove="onMouseMove" class="linux">
+                    <Row type="flex" justify="center" style="height:calc(100% - 49px)">
+                        <Col id="content" span="22" v-html="content"/>
+                    </Row>
+                </div>
             </TabPane>
             <TabPane label="任务定时计划" icon="ios-time-outline">
                 <div @mousemove="onMouseMove" class="clock">
@@ -52,7 +49,15 @@
                         </Col>
                     </Row>
                 </div>
-
+                <Drawer title="输入Linux命令" placement="left" :closable="false" v-model="left1" width="20">
+                    <Row type="flex" justify="center" align="middle">
+                        <Col span="24">
+                            <Input @on-change="change" v-model="value" placeholder="Linux命令搜索" size="large" autofocus/>
+                            <li @click="click(item.name)" v-for="(item,index) in list" :key="index" v-html="item.html"
+                                class="ivu-select-item"/>
+                        </Col>
+                    </Row>
+                </Drawer>
                 <Drawer title="使用说明" placement="left" :closable="false" v-model="left2" width="20">
                     <Row type="flex" justify="center" align="middle">
                         <Col>
@@ -107,6 +112,7 @@
                 value: "",
                 list: [],
                 content: "",
+                left1: false,
                 left2: false,
                 formItem: {
                     title: '',
@@ -241,7 +247,10 @@
             onMouseMove(e) {
                 console.log(e.clientX);
                 if (e.clientX < 2) {
-                    this.left2 = true;
+                    if (e.currentTarget.className === 'linux')
+                        this.left1 = true;
+                    if (e.currentTarget.className === 'clock')
+                        this.left2 = true;
                 }
             },
             test() {
