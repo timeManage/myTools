@@ -281,7 +281,7 @@
                 this.timesGroup();
             },
             setTimeout() {
-                const timeLength = this.formItem.hour * 3600000 + this.formItem.minutes * 1000;
+                const timeLength = this.formItem.hour * 3600000 + this.formItem.minutes * 60000;
                 const timeStamp = new Date().getTime() + timeLength;
                 const timer = setTimeout(this.notification, timeLength, timeStamp);
                 const time = {title: '', body: '', timeStamp: 0, function: null};
