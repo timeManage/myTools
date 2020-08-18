@@ -35,6 +35,10 @@ module.exports = {
         '/server': {
             target: 'http://localhost:8080',
             pathRewrite: {'^/server': ''}
+        },
+        '/bing': {
+            target: 'https://cn.bing.com',
+            pathRewrite: {'^/bing': ''}
         }
     },
     plugins: [

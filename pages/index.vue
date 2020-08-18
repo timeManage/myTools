@@ -3,8 +3,8 @@
         <Tabs size="small">
             <TabPane label="Linux命令查询" icon="logo-tux">
                 <div @mousemove="onMouseMove" class="linux">
-                    <Row type="flex" justify="center" style="height:calc(100% - 49px)">
-                        <Col id="content" span="22" v-html="content"/>
+                    <Row type="flex" justify="center">
+                        <Col v-if="content" id="content" span="22" v-html="content"/>
                     </Row>
                 </div>
             </TabPane>
