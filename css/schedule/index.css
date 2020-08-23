@@ -1,0 +1,11 @@
+.clock {
+    clear: both;
+    overflow: auto;
+    height: calc(100% - 60px);
+    padding-bottom: 60px;
+}
+
+.clock .ivu-card {
+    height: 100%;
+    overflow: auto;
+}

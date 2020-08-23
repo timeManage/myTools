@@ -1,82 +1,45 @@
-html, body, #__nuxt, #__layout, .demo-split, .ivu-tabs.ivu-tabs-mini, .ivu-tabs-content.ivu-tabs-content-animated, .ivu-tabs-tabpane {
+html, body, #__nuxt, #__layout {
     height: 100%;
 }
 
-#content {
-    word-wrap: break-word;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    line-height: 1.6;
-    color: #333;
+/*
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #fff;
 }
 
-#content h1 {
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+!* 滚动槽 *!
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}*/
+
+::-webkit-scrollbar-thumb {
+    background-color: #c2c2c2;
 }
 
-#content h2 {
-    display: block;
-    font-size: 1.5em;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+::-webkit-scrollbar {
+    background: rgba(240, 240, 240, 1);
+    overflow: visible;
+    width: 5px;
+    height: 10px;
+    border-radius: 5px;
+    opacity: 1;
+    -webkit-transition: opacity .2s linear;
 }
 
-#content ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+::-webkit-scrollbar-button {
+    display: none;
 }
 
-#content ul, #content ol {
-    padding-left: 2em;
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
 }
 
-li i {
-    color: #ed4014;
-    font-style: inherit;
-}
-
-li code {
-    color: #ccc;
-    padding: .2em .4em;
-    font-size: 85%;
-    background: #2d2d2d;
-    border-radius: 3px;
-    margin: 0 .4em;
-}
-
-#content p, #content blockquote, #content ul, #content ol, #content dl, #content table, #content pre {
-    margin-top: 0;
-    margin-bottom: 16px;
-}
-
-.ivu-tabs-tabpane .clock, .linux {
-    height: 100%;
-
-}
-
-.linux {
-    overflow: auto;
-}
-
-.clock .ivu-card {
-    height: 100%;
-    overflow: auto;
+::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.3);
 }
