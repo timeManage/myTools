@@ -14,11 +14,12 @@ module.exports = {
             {hid: 'description', name: 'description', content: '{{escape description }}'}
         ],
         link: [
-            {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+            {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
         ]
     },
     css: [
         'view-design/dist/styles/iview.css',
+        './static/css/index.css'
     ],
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
@@ -39,10 +40,23 @@ module.exports = {
         '/bing': {
             target: 'https://cn.bing.com',
             pathRewrite: {'^/bing': ''}
+        },
+        '/biQuGe': {
+            target: 'http://xbiquge.la',
+            pathRewrite: {'^/biQuGe': ''},
+            changeOrigin: true,
+            headers:{
+                referer:'http://xbiquge'
+            }
         }
     },
     plugins: [
         {src: '~plugins/iview', ssr: true},
+        {src: '~plugins/cheerio', ssr: false},
+    ],
+    serverMiddleware: [
+        // API middleware
+        '~/server/index.js'
     ],
     /*
     ** Customize the progress bar color
