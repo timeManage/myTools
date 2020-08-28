@@ -2,7 +2,7 @@
     <div @dblclick="dblclick" @mousemove="onMouseMove" class="book" ref="book">
         <Row v-if="content" type="flex" justify="center">
             <Col span="16" id="articleName">
-                <p>{{articleName}}</p>
+                <p align="right">{{articleName}}</p>
             </Col>
             <Col id="content" span="16" v-html="content">
             </Col>
@@ -11,14 +11,23 @@
             <Row type="flex" justify="center" align="middle">
                 <Col span="24">
                     <Input @on-enter="enter" v-model="value" placeholder="输入书名或作者名" size="large" autofocus/>
-                    <Table @on-row-click="onRowClick" v-if="list.length>0" :columns="books" :data="list"/>
+                </Col>
+                <Col v-if="list.length>0" span="24">
+                    <Table @on-row-click="onRowClick" :loading="loading" :columns="books" :data="list"/>
+                </Col>
+                <Col v-if="history.length>0" span="24">
+                    <Card dis-hover v-for="(item,index) in history" :key="index">
+                        <p slot="title">{{item.bookName}}
+                            <Icon @click="removeHistory(index)" size="22" style="cursor: pointer;float: right;" type="ios-trash-outline"/>
+                        </p>
+                        <p class="ivu-select-item" @click="getHistory(item)">{{item.articleName }}</p>
+                    </Card>
                 </Col>
             </Row>
         </Drawer>
         <Drawer title="小说目录" placement="right" :closable="false" v-model="right" width="25">
             <Row type="flex" justify="center" align="middle">
                 <Col span="24">
-
                     <Card :bordered="false">
                         <p slot="title">{{info.bookName}}</p>
                         <Row>
@@ -33,8 +42,8 @@
                     </Card>
                 </Col>
                 <Col span="22">
-                    <p class="ivu-select-item" v-for="(item,index) in info.list" @click="getContent(item.link)" :key="index">{{item.name}}</p>
-                </Col>
+                    <p class="ivu-select-item" v-for="(item,index) in info.list" @click="getContent(item.link)" :key="index"
+                       :id="item.link===thisArticleLink?'select':''">{{++index +' '+item .name}}</p></Col>
             </Row>
         </Drawer>
     </div>
@@ -77,18 +86,29 @@
                 ],
                 list: [],
                 info: '',
+                bookLink: '',
                 articleName: '',
                 content: '',
+                thisArticleLink: '',
                 nextArticleLink: '',
                 left: false,
                 right: false,
-                loading: true,
+                scroll: true,
+                loading: false,
+                history: []
             }
         },
         mounted() {
-            //window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
-            //this.$refs.content.addEventListener("scroll",this.scroll,true);
-            //this.scroll();
+            //添加监听滚动事件和窗口大小
+            this.$nextTick(() => {
+                this.$refs.book.addEventListener('scroll', this.handleScroll, false);
+                this.$refs.book.addEventListener('resize', this.handleScroll, false);
+            });
+            const record = window.localStorage.getItem('record');
+            if (record) {
+                this.history = JSON.parse(record);
+                this.$store.dispatch('book/setRead', this.history);
+            }
         },
         methods: {
             enter() {
@@ -96,9 +116,11 @@
                 let keyWord = _this.value.trim();
                 if (keyWord) {
                     _this.$axios.get("myTools/api/search", {params: {searchkey: keyWord}}).then(res => {
-                        console.log(_this.list);
-                        if (res.data) {
+                        console.log(res.data);
+                        if (res.data.length > 0) {
                             _this.list = res.data;
+                        } else {
+                            _this.$Message.warning('查无此书！');
                         }
                     })
                 } else {
@@ -106,32 +128,41 @@
                 }
             },
             onRowClick(row, index) {
-                this.$axios.get("myTools/api/info", {params: {link: row.name.link}}).then(res => {
+                this.loading = true;
+                this.getInfo(row.name.link, true);
+            },
+            getInfo(link, type) {
+                this.$axios.get("myTools/api/info", {params: {link: link}}).then(res => {
                     console.log(res.data);
                     if (res.data.bookName) {
                         this.info = res.data;
-                        this.right = true;
+                        this.bookLink = link;
                     }
+                    this.loading = false;
+                    if (type)
+                        this.right = true;
                 })
             },
             getContent(link) {
-                this.$axios.get("myTools/api/article", {params: {link: link}, timeout: 10000}).then(res => {
+                let _this = this;
+                _this.$axios.get("myTools/api/article", {params: {link: link}}).then(res => {
                     console.log(res.data);
-                    if (res.data) {
-                        this.articleName = res.data.articleName;
-                        if (this.loading)
-                            this.content = res.data.articleContent;
-                        else
-                            this.content += res.data.articleContent;
-                        this.nextArticleLink = res.data.nextArticleLink;
-                        this.$nextTick(() => {
-                            this.$refs.book.addEventListener('scroll', this.handleScroll, false);
-                            this.$refs.book.addEventListener('resize', this.handleScroll, false);
-                        });
-                        this.loading = true;
-                        /* this.$el.querySelector('#content').addEventListener('scroll',this.scroll,false);
-                         this.$el.querySelector('#content').addEventListener('resize',this.scroll,false);*/
+                    if (res.data.articleContent) {
+                        _this.articleName = res.data.articleName;
+                        if (_this.scroll) {
+                            _this.content = res.data.articleContent;
+                        } else
+                            _this.content += res.data.articleContent;
+                        _this.nextArticleLink = res.data.nextArticleLink;
+                        _this.thisArticleLink = link;
+                        if (_this.info.bookName) {
+                            const data = {bookName: _this.info.bookName, bookLink: _this.bookLink, articleName: _this.articleName, articleLink: link};
+                            _this.$store.dispatch('book/pushRead', data);
+                        }
+                    } else {
+                        _this.$Message.warning('获取下一章节内容失败！');
                     }
+                    _this.scroll = true;
                 });
 
             },
@@ -142,13 +173,27 @@
                 }
             },
             handleScroll(e) {
-                if (this.loading && e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop < 300) {
-                    this.loading = false;
+                if (this.scroll && e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop < 300) {
+                    this.scroll = false;
                     this.getContent(this.nextArticleLink);
                 }
             },
             dblclick() {
-                this.right = true;
+                if (this.info.list) {
+                    this.right = true;
+                    //元素节点平滑smooth 滚动到可视化窗口 中间center
+                    this.$nextTick(() => {
+                        document.getElementById('select').scrollIntoView({behavior: 'smooth', block: 'center'});
+                    })
+                } else
+                    this.$Message.warning('目录过长正在加载中！')
+            },
+            getHistory(data) {
+                this.getContent(data.articleLink);
+                this.getInfo(data.bookLink);
+            },
+            removeHistory(index) {
+                this.$store.dispatch('book/removeRead', index);
             }
         }
     }

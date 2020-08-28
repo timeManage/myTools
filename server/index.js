@@ -5,11 +5,14 @@ import {search, article, info, test} from '../plugins/cheerio';
 
 axios.interceptors.response.use(value => {
         console.log('请求一次');
-        if (!value || !test(value.data))
-            axios(value.config);
+        if (!value || !test(value.data)) {
+            console.log('请求失败');
+            return Promise.resolve(axios(value.config));
+        }
     },
     error => {
-        console.log(error);
+        console.log('拦截到错误:' + error);
+        return Promise.resolve(axios(error.config));
     });
 
 app.get('/search', (req, res) => {
@@ -20,13 +23,13 @@ app.get('/search', (req, res) => {
 });
 app.get('/info', (req, res) => {
     console.log(req.query.link);
-    axios.get(req.query.link, {headers: {'Referer': 'http://xbiquge'}, timeout: 10000}).then(data => {
+    axios.get(req.query.link, {headers: {'Referer': 'http://xbiquge'}, timeout: 10000}).then(response => {
         res.status(200).send(info());
     });
 });
 app.get('/article', (req, res) => {
     console.log(req.query.link);
-    axios.get(req.query.link, {headers: {'Referer': 'http://xbiquge'}, timeout: 10000}).then(data => {
+    axios.get(req.query.link, {headers: {'Referer': 'http://xbiquge'}, timeout: 10000}).then(response => {
         res.status(200).send(article());
     });
 });

@@ -3,6 +3,7 @@ let $;
 
 export function test(html) {
     $ = cheerio.load(html);
+    console.log($('div').hasClass('header'));
     return $('div').hasClass('header');
 }
 
