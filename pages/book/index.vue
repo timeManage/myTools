@@ -173,7 +173,7 @@
                 }
             },
             handleScroll(e) {
-                if (this.scroll && e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop < 300) {
+                if (this.scroll && e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop === 0) {
                     this.scroll = false;
                     this.getContent(this.nextArticleLink);
                 }
