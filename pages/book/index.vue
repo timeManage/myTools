@@ -145,6 +145,11 @@
             },
             getContent(link) {
                 let _this = this;
+                if (_this.scroll && _this.content) {
+                    this.$nextTick(() => {
+                        document.getElementById('content').scrollIntoView();
+                    })
+                }
                 _this.$axios.get("myTools/api/article", {params: {link: link}}).then(res => {
                     console.log(res.data);
                     if (res.data.articleContent) {
