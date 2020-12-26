@@ -25,5 +25,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: master
           BRANCH: gh-pages
-          FOLDER: dist
+          FOLDER: build
           BUILD_SCRIPT: npm install && npm run build
