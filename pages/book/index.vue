@@ -156,14 +156,15 @@
                         _this.articleName = res.data.articleName;
                         if (_this.scroll) {
                             _this.content = res.data.articleContent;
-                        } else
+                        } else {
                             _this.content += res.data.articleContent;
+                            if (_this.info.bookName) {
+                                const data = {bookName: _this.info.bookName, bookLink: _this.bookLink, articleName: _this.articleName, articleLink: link};
+                                _this.$store.dispatch('book/pushRead', data);
+                            }
+                        }
                         _this.nextArticleLink = res.data.nextArticleLink;
                         _this.thisArticleLink = link;
-                        if (_this.info.bookName) {
-                            const data = {bookName: _this.info.bookName, bookLink: _this.bookLink, articleName: _this.articleName, articleLink: link};
-                            _this.$store.dispatch('book/pushRead', data);
-                        }
                     } else {
                         _this.$Message.warning('获取下一章节内容失败！');
                     }

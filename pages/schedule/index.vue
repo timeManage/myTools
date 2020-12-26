@@ -175,7 +175,7 @@
             },
             notification(timeStamp) {
                 console.log(timeStamp);
-                let time = this.times1.find(value => {
+                let time = this.times.find(value => {
                     return value.timeStamp === timeStamp;
                 });
                 if (!time){

@@ -25,7 +25,8 @@
     "marked": "^1.1.1",
     "nuxt": "^2.14.1",
     "prismjs": "^1.21.0",
-    "view-design": "^4.3.2"
+    "view-design": "^4.3.2",
+    "vue-json-pretty": "^1.7.1"
   },
   "devDependencies": {
     "gh-pages": "^3.1.0"

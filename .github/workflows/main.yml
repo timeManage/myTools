@@ -1,0 +1,29 @@
+# 推送触发脚本
+name: Publish And Deploy nuxt Demo
+on:
+  push:
+    branches:
+      - devloper
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 下载源码
+      - name: Checkout 🛎️
+        uses: actions/checkout@master
+
+      # 打包构建
+      #- name: Install and Build 🔧
+      #  uses: actions/setup-node@master
+      #- run: npm install
+      #- run: npm run build
+
+      # 发布页面
+      - name: Build 🛎️ and Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BASE_BRANCH: master
+          BRANCH: gh-pages
+          FOLDER: dist
+          BUILD_SCRIPT: npm install && npm run build
