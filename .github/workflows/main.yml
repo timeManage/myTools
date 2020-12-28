@@ -21,7 +21,7 @@ jobs:
       # 发布页面
       - name: Build 🛎️ and Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@master
-        env:
+        with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: master
           BRANCH: gh-pages
