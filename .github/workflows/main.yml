@@ -22,7 +22,7 @@ jobs:
       - name: Build 🛎️ and Deploy 🚀
       # uses: JamesIves/github-pages-deploy-action@master
       - uses: kappa0923/nuxtjs-generate-action@master
-      - uses: JamesIves/github-pages-deploy-action
+      - uses: JamesIves/github-pages-deploy-action@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: devloper # The branch the action should deploy from.
