@@ -22,7 +22,7 @@
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^9.0.1",
     "linux-command": "^1.5.1",
-    "marked": "^1.1.1",
+    "marked": "^2.0.0",
     "nuxt": "^2.14.1",
     "prismjs": "^1.21.0",
     "view-design": "^4.3.2",
