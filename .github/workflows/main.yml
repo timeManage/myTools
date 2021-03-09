@@ -20,10 +20,12 @@ jobs:
 
       # 发布页面
       - name: Build 🛎️ and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@master
+      # uses: JamesIves/github-pages-deploy-action@master
+      - uses: kappa0923/nuxtjs-generate-action@master
+      - uses: JamesIves/github-pages-deploy-action@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: npm install && npm run build
+          BASE_BRANCH: devloper # The branch the action should deploy from.
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: dist # The folder the action should deploy.
+          BUILD_SCRIPT: npm install && npm run-script build
