@@ -58,10 +58,6 @@ module.exports = {
         // API middleware
         '~/server/index.js'
     ],
-    server: {
-      port: 80,
-      host: '0.0.0.0'
-    },
     /*
     ** Customize the progress bar color
     */
