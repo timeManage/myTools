@@ -15,11 +15,14 @@
 }
 
 #content {
-    font-size: 17px;
+    line-height: 150%;
+    font-weight: 400;
+    font-size: 22px;
     color: #333;
-    background-color: #ebefd3;
+    background-color: #FBF6EC;
     border-radius: 10px;
     padding: 0 3%;
+    font-family: Microsoft YaHei, cursive;
 }
 .ivu-select-item#select{
     background-color: #fff9e6;
