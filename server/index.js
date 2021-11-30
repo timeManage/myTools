@@ -17,19 +17,19 @@ axios.interceptors.response.use(value => {
 
 app.get('/search', (req, res) => {
     console.log("search:\t" + req.query.searchkey);
-    axios.get('http://xbiquge.la/modules/article/waps.php', {params: req.query, headers: {'Referer': 'http://xbiquge'}, timeout: 10000,}).then(response => {
+    axios.get('http://xbiquge.la/modules/article/waps.php', {params: req.query, headers: {'Referer': 'https://www.xbiquge.la'}, timeout: 1000,}).then(response => {
         res.status(200).send(search());
     });
 });
 app.get('/info', (req, res) => {
     console.log(req.query.link);
-    axios.get(req.query.link, {headers: {'Referer': 'http://xbiquge'}, timeout: 10000}).then(response => {
+    axios.get(req.query.link, {headers: {'Referer': 'https://www.xbiquge.la'}, timeout: 1000}).then(response => {
         res.status(200).send(info());
     });
 });
 app.get('/article', (req, res) => {
     console.log(req.query.link);
-    axios.get(req.query.link, {headers: {'Referer': 'http://xbiquge'}, timeout: 10000}).then(response => {
+    axios.get(req.query.link, {headers: {'Referer': 'https://www.xbiquge.la'}, timeout: 1000}).then(response => {
         res.status(200).send(article());
     });
 });
